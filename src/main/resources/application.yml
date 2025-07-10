@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: zello
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/zello
+    username: TaylorSz
+    password: tos200689
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  error:
+    include-stacktrace: on-param
