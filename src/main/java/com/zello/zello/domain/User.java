@@ -22,7 +22,7 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String type;
     @Column(nullable = false, unique = true)
     private String cpf;

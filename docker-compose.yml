@@ -1,0 +1,16 @@
+services: # Serviços do Docker Compose, aqui definimos os containers
+  db: # Serviço do banco de dados MySQL
+    image: mysql:8.0 # Imagem oficial do MySQL versão 8.0
+    container_name: zello-container # Nome do container Docker
+    restart: always # Reinicia o container automaticamente em caso de falha
+    environment: # Variáveis de ambiente para configuração do MySQL
+      MYSQL_USER: ${USER} # Usuário do banco definido na variável de ambiente USER
+      MYSQL_ROOT_PASSWORD: ${PASSWORD} # Senha do usuário root definida na variável PASSWORD
+      MYSQL_DATABASE: ${DATABASE} # Nome do banco de dados a ser criado, variável DATABASE
+    ports: # Mapeamento de portas (host:container)
+      - "3307:3306" # Porta 3307 do host redirecionada para 3306 do container (evita conflito)
+    volumes: # Volumes para persistência de dados
+      - mysql_data:/var/lib/mysql # Volume nomeado 'mysql_data' para armazenar dados do MySQL
+
+volumes:
+  mysql_data: # Declaração do volume nomeado para persistência
