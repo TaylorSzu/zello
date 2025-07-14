@@ -33,7 +33,6 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findUser(@PathVariable Long id) {
         UserDTO response = userMapper.toUserDTO(userService.findById(id));

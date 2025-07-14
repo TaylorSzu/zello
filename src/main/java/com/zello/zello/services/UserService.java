@@ -4,13 +4,16 @@ import com.zello.zello.domain.User;
 import com.zello.zello.exceptions.NotFoundException;
 import com.zello.zello.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     public User newCreate(User user) {
@@ -33,5 +36,10 @@ public class UserService {
     public void delete(Long id) {
         findById(id);
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByEmail(username).orElseThrow(() -> new NotFoundException("User not found"));
     }
 }
