@@ -7,7 +7,6 @@ public record UpdateUserDTO(
         String name,
         String email,
         String password,
-        String type,
         String cpf,
         LocalDate dateBith,
         String profileImage

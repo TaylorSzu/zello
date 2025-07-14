@@ -19,8 +19,9 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface UserMapper {
-    @Mapping(source = "password", target = "password", qualifiedBy = EncodedMapping.class) //vai pegar a classe q tem essa anotação e vai usar na hora da conversão
+    @Mapping(target = "password", qualifiedBy = EncodedMapping.class) //vai pegar a classe q tem essa anotação e vai usar na hora da conversão
     User toUser(CreateUserDTO dto);
+    @Mapping(target = "password", qualifiedBy = EncodedMapping.class)
     User toUser(UpdateUserDTO dto);
     CreateUserDTO toCreateUserDTO(User user);
     UserDTO toUserDTO(User user);

@@ -29,8 +29,12 @@ public class UserService implements UserDetailsService {
     }
 
     public void update(User user) {
-        findById(user.getId());
-        userRepository.save(user);
+        User savedUser = findById(user.getId());
+        User userToSave = user.withType(savedUser.getType());
+        if (userToSave.getPassword() == null) {
+            userToSave = userToSave.withPassword(savedUser.getPassword());
+        }
+        userRepository.save(userToSave);
     }
 
     public void delete(Long id) {

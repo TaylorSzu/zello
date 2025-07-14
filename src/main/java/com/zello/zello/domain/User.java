@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@With
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class User implements UserDetails {
